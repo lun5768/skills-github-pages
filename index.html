@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Free Recharge Plan 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0066cc;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/1200px-Emblem_of_India.svg.png" alt="Government Logo" class="logo">
+        <h1>PM Free Recharge Plan 2025</h1>
+        <p>Enter your mobile number to claim your free recharge</p>
+        
+        <div id="form-section">
+            <input type="tel" id="mobile-number" placeholder="Enter your mobile number" maxlength="10">
+            <button onclick="validateNumber()">Claim Free Recharge</button>
+        </div>
+        
+        <div id="share-section" class="hidden">
+            <h3>Step 2: Share with 10 WhatsApp Contacts</h3>
+            <p>To prevent misuse, please share this offer with 10 WhatsApp contacts to claim your free recharge</p>
+            <button onclick="shareOnWhatsApp()">Share Now on WhatsApp</button>
+            <p id="share-count">Shares remaining: 10</p>
+        </div>
+        
+        <div id="success-section" class="hidden">
+            <h2 style="color: green;">Recharge Successful!</h2>
+            <p>Your mobile number <span id="display-number"></span> has been recharged with ₹100.</p>
+            <p>Thank you for participating in PM Free Recharge Plan 2025.</p>
+        </div>
+    </div>
+
+    <script>
+        let sharesNeeded = 10;
+        let userNumber = '';
+        
+        function validateNumber() {
+            userNumber = document.getElementById('mobile-number').value;
+            
+            if(userNumber.length !== 10 || isNaN(userNumber)) {
+                alert('Please enter a valid 10-digit mobile number');
+                return;
+            }
+            
+            document.getElementById('form-section').classList.add('hidden');
+            document.getElementById('share-section').classList.remove('hidden');
+        }
+        
+        function shareOnWhatsApp() {
+            const shareText = `I just claimed my free recharge from PM Free Recharge Plan 2025! You can get yours too: ${window.location.href}`;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            sharesNeeded--;
+            document.getElementById('share-count').textContent = `Shares remaining: ${sharesNeeded}`;
+            
+            if(sharesNeeded <= 0) {
+                document.getElementById('share-section').classList.add('hidden');
+                document.getElementById('success-section').classList.remove('hidden');
+                document.getElementById('display-number').textContent = userNumber;
+            }
+        }
+    </script>
+</body>
+</html>
